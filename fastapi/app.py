@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI
 from routes import todos, idtodos
 
@@ -7,10 +6,14 @@ app = FastAPI()
 app.include_router(todos.todo_router)
 app.include_router(idtodos.idtodo_router)
 
+
 # 라우트 정의
 @app.get("/")
 async def welcome() -> dict:
     return {"mess age": "Hello World"}
 
+
 if __name__ == "__main__":
+    import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
